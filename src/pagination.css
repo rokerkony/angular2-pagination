@@ -1,0 +1,26 @@
+ul.pagination {
+    list-style: none;
+}
+ul.pagination li.pagination__item {
+    display: inline-block;
+}
+ul.pagination li.pagination__item a {
+    display: block;
+    border: 1px solid #eee;
+    padding: 3px 7px;
+    border-radius: 3px;
+    margin: 2px;
+    cursor: default;
+    min-width: 16px;
+    text-align: center;
+}
+ul.pagination li.pagination__item.pagination__item--active a {
+    background-color: #2b81af;
+    color: #fff;
+}
+ul.pagination li.pagination__item.pagination__item--disabled a {
+    background-color: #eee;
+}
+ul.pagination li.pagination__item:not(.pagination__item--disabled):not(.pagination__item--active) a {
+    cursor: pointer;
+}

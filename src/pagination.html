@@ -1,0 +1,33 @@
+<ul class="pagination">
+    <li class="pagination__item"
+        [ngClass]="{'pagination__item--disabled': isFirst()}"
+        *ngIf="showBoundaries">
+        <a class="pagination__item"
+           (click)="changePage(1)">{{textLeftBoundary || '&laquo;'}}</a>
+    </li>
+    <li class="pagination__item"
+        [ngClass]="{'pagination__item--disabled': isFirst()}"
+        *ngIf="showNextPrev">
+        <a class="pagination__item"
+           (click)="previousPage()">{{textPrev || 'Prev'}}</a>
+    </li>
+
+    <li class="pagination__item"
+        [ngClass]="{'pagination__item--active': activePage === page.value}"
+        *ngFor="#page of pages">
+        <a (click)="changePage(page.value)">{{page.value}}</a>
+    </li>
+
+    <li class="pagination__item"
+        [ngClass]="{'pagination__item--disabled': isLast()}"
+        *ngIf="showNextPrev"
+        [hidden]="isLast()">
+        <a (click)="nextPage()">{{textNext || 'Next'}}</a>
+    </li>
+    <li class="pagination__item"
+        [ngClass]="{'pagination__item--disabled': isLast()}"
+        *ngIf="showBoundaries">
+        <a class="pagination__item"
+           (click)="changePage(getPageCount())">{{textRightBoundary || '&raquo;'}}</a>
+    </li>
+</ul>

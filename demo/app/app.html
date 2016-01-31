@@ -1,0 +1,18 @@
+<h2>Pagination:</h2>
+
+<span>
+    Selected page: {{myActivePage}}
+</span>
+
+<pagination
+        [active-page]="myActivePage"
+        [item-count]="463"
+        [items-per-page]="11"
+        [visible-pages]="4"
+        [show-next-prev]="true"
+        [show-boundaries]="true"
+        (pageChanged)="onPageChange($event)"
+        text-left-boundary="&laquo;"
+        text-right-boundary="&raquo;"
+        text-next="Next page"
+        text-prev="Previous page"></pagination>
