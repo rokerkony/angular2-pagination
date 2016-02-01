@@ -1,10 +1,5 @@
 import {bootstrap} from 'angular2/platform/browser'
 import {
-    NgFor,
-    NgIf,
-    NgClass
-} from 'angular2/common';
-import {
     Component,
     View,
     Output,
@@ -31,11 +26,6 @@ import {PaginationEvent} from './paginationEvent';
     ],
 })
 @View({
-    directives: [
-        NgFor,
-        NgIf,
-        NgClass
-    ],
     // todo: this is not relative path from component but from application, related issue: https://github.com/angular/angular/issues/2383
     templateUrl: './../src/pagination.html',
     styleUrls: [
