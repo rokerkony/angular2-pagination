@@ -1,4 +1,3 @@
-import {bootstrap} from 'angular2/platform/browser'
 import {
     Component,
     View,
@@ -8,9 +7,13 @@ import {
 } from 'angular2/core';
 import {Page} from './page';
 import {PaginationEvent} from './paginationEvent';
+import {PageBuilder} from './pageBuilder';
 
 @Component({
     selector: 'pagination',
+    providers: [
+        PageBuilder,
+    ],
     properties: [
         'activePage: active-page',
         'itemCount: item-count',
@@ -41,6 +44,8 @@ export class Pagination implements OnInit {
     private visiblePages: number;
     private itemCount: number = 0;
     private itemsPerPage: number = 20;
+
+    constructor (private pageBuilder: PageBuilder) {}
 
     @Output() private pageChanged: EventEmitter<PaginationEvent> = new EventEmitter();
 
@@ -96,23 +101,6 @@ export class Pagination implements OnInit {
     }
 
     private getPages (): Page[] {
-        let pages: Page[] = [];
-
-        if (1 < this.visiblePages) {
-            let minPage = this.activePage - this.visiblePages;
-            let maxPage = this.activePage + this.visiblePages;
-
-            for (let pageValue = minPage; pageValue <= maxPage; ++pageValue) {
-                if (0 < pageValue && pageValue <= this.getPageCount()) {
-                    pages.push(new Page(pageValue));
-                }
-            }
-        } else {
-            for (let pageValue = 1; pageValue <= this.getPageCount(); ++pageValue) {
-                pages.push(new Page(pageValue));
-            }
-        }
-
-        return pages;
+        return this.pageBuilder.getPages(this.visiblePages, this.activePage, this.getPageCount());
     }
 }
