@@ -1,17 +1,6 @@
 module.exports = function(grunt) {
      require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
-    var tsOptions = {
-        target: 'es5',
-        module: 'commonjs',
-        sourceMap: true,
-        declaration: false,
-        noLib: false,
-        noImplicitAny: true,
-        experimentalDecorators: true,
-        emitDecoratorMetadata: true
-    };
-
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         DEVELOPMENT_PATH: 'demo/app/',
@@ -30,7 +19,7 @@ module.exports = function(grunt) {
         },
         ts: {
             main: {
-                options: tsOptions,
+                options: require('./tsconfig.json').compilerOptions,
                 src: [
                     '<%= DEVELOPMENT_PATH %>' + '**/*.ts',
                     '<%= SRC_PATH %>' + '**/*.ts'
